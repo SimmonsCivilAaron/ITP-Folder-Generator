@@ -7,6 +7,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <style>
+  #wip-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wip-box {
+  background: #d60000;
+  color: white;
+  border: 6px solid white;
+  border-radius: 12px;
+  padding: 40px 60px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.wip-box h1 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.wip-box p {
+  font-size: 20px;
+  margin: 0;
+}
+  
   :root {
     --navy: #2D3691;
     --sky: #29ACE4;
@@ -140,6 +172,13 @@
 </style>
 </head>
 <body>
+
+<div id="wip-overlay">
+  <div class="wip-box">
+    <h1>WORK IN PROGRESS</h1>
+    <p>Please come back later.</p>
+  </div>
+</div>
 
 <div class="header">
   <div class="header-logo">SCC</div>
