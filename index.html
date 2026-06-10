@@ -155,50 +155,31 @@
     <div class="card-title">Point Type &amp; Reference</div>
     <div class="row">
       <div class="field">
-        <label>Specification</label>
-        <select id="spec-select" onchange="updateClauses()">
-          <option value="R11">R11 — Stormwater Drainage</option>
-          <option value="R15">R15 — Kerb &amp; Gutter</option>
-          <option value="R16">R16 — Precast Box Culverts</option>
-          <option value="R23">R23 — Plastic Flexible Pipes</option>
-          <option value="R33">R33 — Subsoil &amp; Trench Drains</option>
-          <option value="R44">R44 — Earthworks</option>
-          <option value="R50">R50 — Stabilisation</option>
-          <option value="R53">R53 — Concrete Works</option>
-          <option value="R54">R54 — General Concrete Paving</option>
-          <option value="R55">R55 — Gabions &amp; Mattresses</option>
-          <option value="R63">R63 — Geotextiles</option>
-          <option value="R71">R71 — Unbound Pavement</option>
-          <option value="R73">R73 — Plant Mixed HBP</option>
-          <option value="R82">R82 — Lean-mix Subbase</option>
-          <option value="R101">R101 — Cold Milling</option>
-          <option value="R106">R106 — Sprayed Bituminous Surfacing</option>
-          <option value="R116">R116 — Dense Graded Asphalt</option>
-          <option value="R142">R142 — Retroreflective RPMs</option>
-          <option value="R143">R143 — Signposting</option>
-          <option value="R145">R145 — Pavement Marking</option>
-          <option value="R178">R178 — Vegetation</option>
-          <option value="B80">B80 — Stormwater Structure Concrete</option>
-          <option value="R201">R201 — Fencing</option>
-        </select>
+        <label>Type</label>
+        <div class="type-row">
+          <button class="type-btn active-hp" id="btn-hp" onclick="setType('HP')">Hold Point</button>
+          <button class="type-btn" id="btn-wp" onclick="setType('WP')">Witness Point</button>
+        </div>
       </div>
       <div class="field">
-        <label id="point-num-label">Point Number</label>
+        <label id="point-num-label">Hold Point Number</label>
         <input type="text" id="point-number" placeholder="e.g. 3" oninput="updatePreview()">
       </div>
     </div>
 
-    <div style="margin-top:16px;" class="row" style="grid-template-columns: 1fr;">
-      <div class="field" style="grid-column: span 2;">
-        <label>Clause &amp; Type</label>
+    <div style="margin-top:16px;" class="row">
+      <div class="field">
+        <label>Specification</label>
+        <select id="spec-select" onchange="updateClauses()">
+          <option value="R11">R11 — Stormwater Drainage</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Clause</label>
         <select id="clause-select" onchange="onClauseSelect()">
           <option value="">Select clause...</option>
         </select>
       </div>
-    </div>
-
-    <div id="type-badge" style="display:none; margin-top:10px;">
-      <span id="type-badge-inner" style="display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; padding:4px 10px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;"></span>
     </div>
 
     <div class="info-box" id="clause-info"></div>
@@ -264,164 +245,64 @@
 const DATA = {
   HP: {
     R11: [
-      { clause: "2.4.1", short: "Precast Member Supply", process: "Supply of precast concrete members subject to traffic and/or earth pressure loading, and water retaining structures with capacity greater than 25,000 litres.", submission: "At least 7 days prior to delivery: certified product drawings (full dimensions, reinforcement, cover, lifting points, certified by structural engineer); details of manufacture, testing and installation methods.", release: "Principal considers documents and may audit Quality Records before releasing." },
-      { clause: "2.6", short: "Manufactured Product Incorporation", process: "Incorporation into the Works of any supplied manufactured drainage product.", submission: "Certificate of conformity confirming materials and finished product comply with the Specification — at least 7 days prior to incorporation.", release: "Principal may inspect Quality Records before releasing." },
-      { clause: "3.4.4", short: "Rip Rap Supply", process: "Supply of rock rip rap.", submission: "Details regarding the properties and source of the rock rip rap, including NATA test results per Cl.3.4.4 and Annexure R11/L — prior to commencement.", release: "Principal considers submitted documents for compliance before releasing." },
-      { clause: "4.1.1", short: "Drainage System Set-out", process: "Construction of each drainage system.", submission: "Notification that set out of drainage system is complete, plus details of any proposed design changes to locations and levels.", release: "Principal inspects set out and any proposed changes; may amend design to suit site conditions before releasing." },
-      { clause: "4.2.1", short: "Open Drain Grade", process: "Construction of open drains with grade less than 0.5%.", submission: "Notification that 0.5% minimum grade cannot be achieved.", release: "Principal considers the matter and directs further action before releasing." },
-      { clause: "4.3.3", short: "Inadequate Foundation Replacement", process: "Replacement or treatment of inadequate foundation material.", submission: "Notification that inadequate foundation material has been excavated to extent directed, plus details of tests, inspections, geotechnical engineer assessment and any proposed foundation treatment.", release: "Principal inspects excavation and may direct further excavation before releasing." },
-      { clause: "4.10", short: "Heavy Plant Crossings", process: "Moving heavy construction plant or vehicles over pipe or box culvert structures.", submission: "Certificate and verification of protective measures designed per TfNSW G2-C2.", release: "Principal may examine submitted documents before releasing." },
-      { clause: "5.3.1", short: "Existing Pipe Rehabilitation", process: "Scope and method of existing drainage pipes and pits rehabilitation.", submission: "CCTV and visual inspection record and condition assessment report of identified defects, including video evidence and WSA 05-2008 compliant report with rehabilitation recommendations.", release: "Principal examines submitted documents and directs rehabilitation scope before releasing." }
-    ],
-    R15: [
-      { clause: "3.7", short: "Concrete Placing", process: "Placing of concrete for kerbs and channels (deferred to TfNSW R53 Cl.3.3.1 Hold Point).", submission: "At least 2 working days prior: (a) expected completion time of formwork and reinforcement fixing; (b) expected commencement date and time of concrete placement — per R53 Cl.3.3.1.", release: "Principal may inspect completed reinforcement and formwork before releasing — per R53 Cl.3.3.1." }
-    ],
-    R16: [
-      { clause: "(per Annex C)", short: "Design Submission", process: "Manufacture of precast reinforced concrete box culvert units.", submission: "Structural design documentation certified by a structural engineer, including drawings, reinforcement details, cover, design calculations and lifting point locations — at least 10 working days prior to manufacture.", release: "Principal reviews design documentation before releasing." },
-      { clause: "(per Annex C)", short: "Unit Supply", process: "Supply of precast box culvert units to site.", submission: "Certificate of conformity confirming units comply with this Specification and AS 1597.2, including NATA test results for concrete strength and dimensional checks.", release: "Principal may audit quality records before releasing." }
-    ],
-    R23: [
-      { clause: "(per Annex C)", short: "Pipe Material Conformity", process: "Supply of plastic flexible drainage pipes to site.", submission: "Certificate of conformity confirming pipes comply with TfNSW 3552 and relevant Australian Standards, including manufacturer's test results.", release: "Principal may audit quality records before releasing." }
-    ],
-    R33: [
-      { clause: "3.5", short: "Pipe Backfilling", process: "Backfilling over the drainage pipe in the trench with filter material.", submission: "Verification that pipe laying, jointing and bedding are complete and conforming.", release: "Principal may inspect drainage pipe in the trench before releasing." }
-    ],
-    R44: [
-      { clause: "2.5.3", short: "Surface Survey Held", process: "Any works which will alter the ground surface as surveyed after topsoil removal.", submission: "Survey Report of existing surface levels, and notification that set out (incl. Cut/Fill Transition Zone extent per Cl.3.5.2) has been carried out — at least 3 working days prior.", release: "Principal inspects surfaces and set out; may direct further action including altering limits of Cut/Fill Transition Zone before releasing." },
-      { clause: "2.6", short: "Unsuitable Material Replacement", process: "Replacement of each Lot of unsuitable material.", submission: "Notification that unsuitable material has been removed as directed.", release: "Principal inspects excavation and may direct removal of further material before releasing." },
-      { clause: "3.2", short: "Cutting Floor Treatment", process: "Treatment of each Lot of floors of cuttings.", submission: "(a) Notification of completion of excavation to: (i) Designed Floor Level or Foundation Level as appropriate; (ii) depth specified for Cut/Fill Transition Zone per Cl.3.5.2. (b) CBR and PI test results. Submission must be concurrent with any adjoining Shallow Embankment HP per Cl.3.3.", release: "Principal considers submitted documents, inspects cutting floor; may direct removal of unsuitable material, installation of trench drains (TfNSW R33), foundation treatments, or changes to excavation area before releasing." },
-      { clause: "3.3", short: "Embankment Foundation Treatment", process: "Treatment of each Lot of embankment foundation.", submission: "(a) Survey report. (b) Notification of completion of clearing. (c) In areas other than beneath Shallow Embankments: notification topsoil removed per Cl.2.5 or grasses flattened/mowed if shown on Drawings. (d) Beneath Shallow Embankments: notification topsoil removed and surface excavated per Cl.3.5.1, plus CBR and PI test results if required.", release: "Principal considers submitted documents, inspects prepared embankment foundation; may direct removal of unsuitable material or additional treatment per Cl.3.3 before releasing." }
-    ],
-    R50: [
-      { clause: "(per Annex C)", short: "Mix Design Approval", process: "Commencement of stabilisation works using each nominated mix design.", submission: "Nominated mix design details including material properties, binder type and content, UCS results at 28 days, and ITS results — at least 10 working days prior.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(per Annex C)", short: "Trial Section Conformity", process: "Commencement of stabilisation works beyond trial section.", submission: "Documentation and test results verifying that the trial section conforms to specified requirements.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(per Annex C)", short: "Nonconforming Lot Rectification", process: "Rectification or replacement of a nonconforming Lot of stabilised material.", submission: "Nonconformity Report and details of proposal to rectify or replace the Lot.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R53: [
-      { clause: "2.4.3", short: "Concrete Mix Approval", process: "Commencement of production of each concrete mix.", submission: "At least 5 working days prior, submit one of: (a) production assessment report per AS 1379 Cl.6.4.2 and supplier material certifications, or NATA test results from mix design within 18 months; or (b) details of mix from TfNSW Register of Concrete Mixes with statement confirming conformity and suitability.", release: "Principal considers submitted documents before releasing." },
-      { clause: "3.3.1", short: "Concrete Placing", process: "Placing of concrete (where nominated in the relevant TfNSW Specification).", submission: "At least 2 working days prior: (a) expected completion time of formwork and reinforcement fixing; (b) expected commencement date and time of concrete placement.", release: "Principal may inspect completed reinforcement and formwork before releasing." }
-    ],
-    R54: [
-      { clause: "(via R53 2.4.3)", short: "Concrete Mix Approval", process: "Commencement of production of each concrete mix for general concrete paving works.", submission: "At least 5 working days prior: production assessment report per AS 1379 Cl.6.4.2 and supplier certifications, or mix details from TfNSW Register of Concrete Mixes with conformity statement.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(via R53 3.3.1)", short: "Concrete Placing", process: "Placing of concrete for R54 paving works.", submission: "At least 2 working days prior: (a) expected completion time of formwork and reinforcement fixing; (b) expected commencement date and time of concrete placement.", release: "Principal may inspect completed reinforcement and formwork before releasing." }
-    ],
-    R55: [
-      { clause: "(per Annex C)", short: "Gabion Material Approval", process: "Supply of rock fill gabions and mattresses to site.", submission: "Product details and test certificates for wire mesh, rock fill properties and fill conformity — prior to installation.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R63: [
-      { clause: "(per Annex C)", short: "Geotextile Material Approval", process: "Supply and use of geotextiles on the project.", submission: "Product data sheets and test certificates confirming geotextile conformity to the relevant Strength Class and performance requirements of TfNSW R63 — at least 5 working days prior to use.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R71: [
-      { clause: "2.2", short: "Certified Stockpile Delivery", process: "Deliveries of materials from a Certified Stockpile.", submission: "Details of the stockpile, signed statement of conformity, and documentation per TfNSW 3051.", release: "Principal considers submitted documents before releasing." },
-      { clause: "4.2", short: "Contractor Mix Design", process: "Use of each Contractor nominated mix design.", submission: "At least 10 working days prior to trial section or pavement works: nominated mix design details and test results verifying conformity, including material details per TfNSW 3051, binder type/source/proportion, water source, and UCS and Working Time results.", release: "Principal considers submitted documents and accepts the nominated mix design before releasing." },
-      { clause: "5.2.2", short: "Alternative Construction Method", process: "Use of an Alternative Construction Method for binder incorporation.", submission: "Details of the procedures, ITP for spreading and mixing of binder, and documents verifying calibration of spread rate at demonstration or trial section.", release: "Principal considers submitted documents before releasing." },
-      { clause: "6.5.1", short: "Trial Section Conformity", process: "Construction of pavement (following trial section).", submission: "Documentation including test results verifying that the trial section conforms to specified requirements.", release: "Principal considers submitted documents before releasing." },
-      { clause: "6.8", short: "Pre-Seal Conformity", process: "Priming or primer sealing of pavement surface.", submission: "Conformity reports verifying each Lot conforms with respect to specified level, thickness, surface deviation and compaction, and notification that pavement course is ready for sprayed sealing.", release: "Principal considers submitted documents before releasing." },
-      { clause: "7.2", short: "Underlying Surface Levels", process: "Placement of pavement course.", submission: "Schedule of levels of the underlying surface at least 7 working days before programmed commencement of work. Must highlight locations where actual levels are higher than design levels.", release: "Principal considers submitted documents before releasing." },
-      { clause: "8.12.1", short: "Nonconforming Lot Rectification", process: "Rectification or replacement of a nonconforming Lot.", submission: "Nonconformity Report and details of proposal to rectify or replace the Lot.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R73: [
-      { clause: "(per Annex C)", short: "Mix Design Approval", process: "Use of each nominated mix design for heavily bound pavement course.", submission: "Nominated mix design details including material properties, binder content, and test results — at least 10 working days prior to commencement.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(per Annex C)", short: "Trial Section Conformity", process: "Commencement of HBP works beyond trial section.", submission: "Documentation and test results verifying trial section conforms to specified requirements.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(per Annex C)", short: "Nonconforming Lot Rectification", process: "Rectification or replacement of a nonconforming Lot.", submission: "Nonconformity Report and details of proposal to rectify or replace the Lot.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R82: [
-      { clause: "(per Annex C)", short: "Concrete Mix Approval", process: "Commencement of lean-mix concrete subbase production.", submission: "Nominated mix design details including cement content, aggregate grading, strength and compressive strength test results — at least 5 working days prior.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(via R53 3.3.1)", short: "Concrete Placing", process: "Placing of lean-mix concrete subbase.", submission: "At least 2 working days prior: (a) expected completion time of formwork setup; (b) expected commencement date and time of concrete placement.", release: "Principal may inspect completed formwork before releasing." }
-    ],
-    R101: [
-      { clause: "(per Annex C)", short: "Milling Commencement", process: "Commencement of cold milling works.", submission: "Details of proposed equipment including milling drum type, cutting depth, width and method of controlling line and level — at least 5 working days prior.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R106: [
-      { clause: "(per Annex C)", short: "Material Pre-Approval", process: "Supply and use of bituminous binder and cover aggregate.", submission: "Details of proposed binder source and class, aggregate source and type, aggregate pre-coating agent (if applicable), and conformity documentation to TfNSW 3151, 3253, 3258, 3261 as applicable — at least 5 working days prior.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(per Annex C)", short: "Pre-Spray Inspection", process: "Spraying of binder on each section of road.", submission: "Evidence of satisfactory surface preparation and confirmation weather conditions are suitable for spraying.", release: "Principal may inspect surface condition before releasing." }
-    ],
-    R116: [
-      { clause: "2.3.5", short: "Nominated Mix Approval", process: "Placing of the nominated mix(es).", submission: "Documents per Cl.2.3.3 at least 7 working days before placing: constituent material details, mix design proportions and volumetric/mechanical properties, production trial results, and signed conformity statement with NATA endorsed test results.", release: "Principal considers submitted documents before releasing. Release valid for a maximum of 24 months." },
-      { clause: "3.5.1", short: "Paving Temperature Details", process: "Commencement of paving using the nominated mix(es), including trial section.", submission: "If not previously submitted: (a) minimum temperature at which asphalt will be delivered to the paver; (b) minimum temperature at which initial compaction can still commence; (c) method of temperature measurement.", release: "Principal considers submitted documents before releasing." },
-      { clause: "3.6.3", short: "Non-Standard Layer Thickness", process: "Placing of asphalt in layer thicknesses that do not conform to specified layer thicknesses.", submission: "(a) Nominated nonconforming layer thicknesses; (b) work methods capable of producing a dense homogeneous layer at these thicknesses; (c) areas affected and evidence these are the absolute minimum necessary.", release: "Principal considers submitted documents before releasing." },
-      { clause: "3.8.6", short: "Trial Section Conformity", process: "Commencement of paving at locations other than the trial section.", submission: "Verification checklist and all relevant test results from the trial section demonstrating conformity to specified requirements — at least 3 working days prior.", release: "Principal considers submitted documents before releasing." },
-      { clause: "5.8.5", short: "Nonconforming Lot Rectification", process: "Rectification or replacement of a nonconforming Lot.", submission: "Nonconformity Report and details of proposal to rectify or replace the Lot.", release: "Principal considers submitted documents before releasing." },
-      { clause: "Annex B2.3", short: "TSR Nonconformity Response", process: "Further production of the nominated mix (where TSR nonconformity triggered).", submission: "(a) Proposed corrective action to achieve conformity. (b) Test results for insitu air voids and all properties per Cl.2.2 of the nonconforming Lot.", release: "Principal considers submitted documents and advises whether nonconforming Lot can be accepted before releasing." },
-      { clause: "Annex F", short: "RAP Approval Level Progression", process: "Progression to a higher RAP Approval Level.", submission: "Documentation demonstrating compliance with the Performance Period corresponding to the higher RAP Approval Level applied for.", release: "Principal considers submitted documentation before releasing." }
-    ],
-    R142: [
-      { clause: "(per Annex C)", short: "RPM Material Approval", process: "Supply and installation of retroreflective raised pavement markers.", submission: "Product data sheets and test certificates confirming RPM conformity to TfNSW 3354 and AS 1906 requirements — at least 5 working days prior.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R143: [
-      { clause: "(per Annex C)", short: "Sign Schedule Approval", process: "Fabrication of road signs.", submission: "Sign schedule submitted to Principal for approval prior to fabrication — at least 10 working days prior.", release: "Principal reviews sign schedule and authorises fabrication before releasing." }
-    ],
-    R145: [
-      { clause: "(per Annex C)", short: "Marking Material Approval", process: "Commencement of pavement marking works.", submission: "Details of proposed pavement marking materials (type, colour, brand, retroreflectivity class) and confirmation of conformity with TfNSW 3356 or 3357 as applicable — at least 5 working days prior.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(per Annex C)", short: "Trial Section Conformity", process: "Commencement of full pavement marking works.", submission: "Test results from trial section verifying retroreflectivity, colour and thickness conform to specified requirements.", release: "Principal considers submitted documents before releasing." }
-    ],
-    R178: [
-      { clause: "(per Annex C)", short: "Seeding Mix Approval", process: "Supply and use of seed mixes for revegetation.", submission: "Seed mix composition, species list, rates and source certification confirming compliance with Specification requirements — at least 5 working days prior to seeding.", release: "Principal considers submitted documents before releasing." }
-    ],
-    B80: [
-      { clause: "(via R53 2.4.3)", short: "Concrete Mix Approval", process: "Commencement of production of each concrete mix for bridge/structure concrete works.", submission: "At least 5 working days prior: production assessment report per AS 1379 Cl.6.4.2 and supplier certifications, or mix details from TfNSW Register of Concrete Mixes with conformity statement.", release: "Principal considers submitted documents before releasing." },
-      { clause: "(via R53 3.3.1)", short: "Concrete Placing", process: "Placing of concrete for B80 structure works.", submission: "At least 2 working days prior: (a) expected completion time of formwork and reinforcement fixing; (b) expected commencement date and time of placement.", release: "Principal may inspect completed reinforcement and formwork before releasing." }
-    ],
-    R201: []
+      {
+        clause: "2.4.1",
+        process: "Supply of precast concrete members subject to traffic/earth pressure loading, or water retaining structures >25,000L",
+        short: "Precast Concrete Supply",
+        submission: "At least 7 days prior to delivery: certified product drawings, reinforcement details, cover, attachment details, and methods for manufacture, testing and installation.",
+        release: "Principal will consider the documents and may audit Quality Records prior to authorising release."
+      },
+      {
+        clause: "2.6",
+        process: "Incorporation into the Works of any supplied manufactured drainage product",
+        short: "Drainage Product Incorporation",
+        submission: "Certificate of conformity, at least 7 days prior to incorporation into the Works.",
+        release: "Principal may inspect the Quality Records prior to authorising release."
+      },
+      {
+        clause: "4.1.1",
+        process: "Construction of each drainage system",
+        short: "Drainage System Set Out",
+        submission: "Notification that set out of drainage system has been completed, and details of any proposed design changes in locations and levels.",
+        release: "Principal will inspect the set out, including any proposed changes, and if necessary amend the design to suit actual site conditions prior to authorising release."
+      },
+      {
+        clause: "4.2.1",
+        process: "Construction of open drains with grade less than 0.5%",
+        short: "Open Drain Grade <0.5%",
+        submission: "Notification that the 0.5% minimum grade cannot be achieved.",
+        release: "Principal will consider the matter and will direct you further prior to authorising release."
+      },
+      {
+        clause: "4.3.3",
+        process: "Replacement of inadequate foundation material",
+        short: "Foundation Material Replacement",
+        submission: "Notification that inadequate foundation material has been excavated to the extent directed.",
+        release: "Principal will inspect the excavation and may direct further excavation prior to authorising release."
+      },
+      {
+        clause: "4.10",
+        process: "Moving heavy construction plant or vehicles over pipe or box culvert structures",
+        short: "Plant Over Culvert Structures",
+        submission: "Certificate and verification of protective measures designed in accordance with TfNSW G2.",
+        release: "Principal may examine the submitted documents prior to authorising release."
+      }
+    ]
   },
   WP: {
     R11: [
-      { clause: "4.3", short: "Drainage Excavation Inspection", process: "Excavation for pipe installation and other drainage structures.", submission: "Notification to Principal not later than 24 hours but not earlier than 5 working days before anticipated date of completion of excavation and preparation of foundations." },
-      { clause: "4.7.2", short: "Drainage Structures Commencement", process: "Construction of drainage structures other than pipes and box culverts.", submission: "Notify Principal at least 7 days prior to commencement of the work." }
-    ],
-    R15: [],
-    R16: [
-      { clause: "(per Annex C)", short: "Unit Installation", process: "Installation of precast box culvert units.", submission: "Notification to Principal at least 7 working days prior to commencement of installation." }
-    ],
-    R23: [
-      { clause: "(per Annex C)", short: "Pipe Installation Inspection", process: "Installation of plastic flexible pipes.", submission: "Notification to Principal at least 24 hours but not more than 5 working days before anticipated date of completion of excavation and preparation of foundations." }
-    ],
-    R33: [],
-    R44: [],
-    R50: [
-      { clause: "(per Annex C)", short: "Trial Section Witnessing", process: "Construction of trial section of stabilisation.", submission: "Notification to Principal at least 3 working days prior to commencement." }
-    ],
-    R53: [
-      { clause: "3.6", short: "Mortar Grout Placing", process: "Placing of mortar, grout and sprayed concrete.", submission: "At least 2 working days prior, provide notice of expected commencement date and time of placement of mortar, grout or sprayed concrete." }
-    ],
-    R54: [
-      { clause: "(via R53 3.6)", short: "Mortar / Grout Placing", process: "Placing of mortar or grout for R54 works.", submission: "At least 2 working days prior, provide notice of expected commencement date and time of placement." }
-    ],
-    R55: [
-      { clause: "(per Annex C)", short: "Gabion Installation", process: "Construction and filling of gabion structures.", submission: "Notification to Principal at least 2 working days prior to commencement." }
-    ],
-    R63: [],
-    R71: [
-      { clause: "6.5.1", short: "Trial Section Witnessing", process: "Construction of trial section of pavement.", submission: "Notification at least 3 working days prior to commencement of trial section construction." }
-    ],
-    R73: [
-      { clause: "(per Annex C)", short: "Trial Section Witnessing", process: "Construction of trial section of heavily bound pavement course.", submission: "Notification to Principal at least 3 working days prior to commencement." }
-    ],
-    R82: [
-      { clause: "(per Annex C)", short: "Subbase Construction", process: "Construction of lean-mix concrete subbase.", submission: "Notification to Principal at least 2 working days prior to commencement of each section." }
-    ],
-    R101: [
-      { clause: "(per Annex C)", short: "Milling Inspection", process: "Cold milling of road pavement surface.", submission: "Notification to Principal at least 24 hours prior to commencement of milling in each area." }
-    ],
-    R106: [
-      { clause: "(per Annex C)", short: "Trial Section Witnessing", process: "Construction of trial section of sprayed bituminous surfacing.", submission: "Notification to Principal at least 3 working days prior to commencement of trial section." }
-    ],
-    R116: [],
-    R142: [],
-    R143: [
-      { clause: "(per Annex C)", short: "Sign Installation Inspection", process: "Installation of road signs.", submission: "Notification to Principal at least 2 working days prior to commencement of sign installation." }
-    ],
-    R145: [
-      { clause: "(per Annex C)", short: "Marking Trial Inspection", process: "Placement of trial pavement marking section.", submission: "Notification to Principal at least 2 working days prior to commencement of trial section." }
-    ],
-    R178: [
-      { clause: "(per Annex C)", short: "Revegetation Commencement", process: "Commencement of revegetation and topsoil spreading works.", submission: "Notification to Principal at least 2 working days prior to commencement." }
-    ],
-    B80: [
-      { clause: "(via R53 3.6)", short: "Mortar Grout Placing", process: "Placing of mortar or grout for B80 structure works.", submission: "At least 2 working days prior, provide notice of expected commencement date and time of placement." }
-    ],
-    R201: [
-      { clause: "(per Annex C)", short: "Fencing Commencement", process: "Commencement of fencing works.", submission: "Notification to Principal at least 2 working days prior to commencement of fencing in each area." }
+      {
+        clause: "4.3",
+        process: "Excavation for pipe installation and other drainage structures",
+        short: "Pipe Excavation",
+        submission: "Notification to the Principal not later than 24 hours but not earlier than 5 working days of the anticipated date of completion of excavation and preparation of foundations."
+      },
+      {
+        clause: "4.7.2",
+        process: "Construction of drainage structures other than pipes and box culverts",
+        short: "Drainage Structure Construction",
+        submission: "Notify the Principal at least 7 days prior to the date of commencement of work."
+      }
     ]
   }
 };
@@ -446,73 +327,36 @@ function saveCustomDocs() {
   } catch(e) {}
 }
 
+function setType(t) {
+  currentType = t;
+  document.getElementById('btn-hp').className = 'type-btn' + (t === 'HP' ? ' active-hp' : '');
+  document.getElementById('btn-wp').className = 'type-btn' + (t === 'WP' ? ' active-wp' : '');
+  document.getElementById('point-num-label').textContent = t === 'HP' ? 'Hold Point Number' : 'Witness Point Number';
+  updateClauses();
+}
+
 function updateClauses() {
   const spec = document.getElementById('spec-select').value;
   const sel = document.getElementById('clause-select');
+  const items = DATA[currentType][spec] || [];
   sel.innerHTML = '<option value="">Select clause...</option>';
-
-  const hpItems = DATA['HP'][spec] || [];
-  if (hpItems.length) {
-    const grp = document.createElement('optgroup');
-    grp.label = 'Hold Points';
-    hpItems.forEach((item, i) => {
-      const opt = document.createElement('option');
-      opt.value = 'HP:' + i;
-      opt.textContent = `HP — Cl ${item.clause} — ${item.short}`;
-      grp.appendChild(opt);
-    });
-    sel.appendChild(grp);
-  }
-
-  const wpItems = DATA['WP'][spec] || [];
-  if (wpItems.length) {
-    const grp = document.createElement('optgroup');
-    grp.label = 'Witness Points';
-    wpItems.forEach((item, i) => {
-      const opt = document.createElement('option');
-      opt.value = 'WP:' + i;
-      opt.textContent = `WP — Cl ${item.clause} — ${item.short}`;
-      grp.appendChild(opt);
-    });
-    sel.appendChild(grp);
-  }
-
+  items.forEach((item, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `Cl ${item.clause} — ${item.process}`;
+    sel.appendChild(opt);
+  });
   document.getElementById('clause-info').classList.remove('visible');
   document.getElementById('clause-info').innerHTML = '';
-  document.getElementById('type-badge').style.display = 'none';
-  currentType = 'HP';
   updatePreview();
 }
 
 function onClauseSelect() {
   const spec = document.getElementById('spec-select').value;
-  const val = document.getElementById('clause-select').value;
+  const idx = document.getElementById('clause-select').value;
   const box = document.getElementById('clause-info');
-  const badge = document.getElementById('type-badge');
-  const badgeInner = document.getElementById('type-badge-inner');
-
-  if (val === '') {
-    box.classList.remove('visible');
-    box.innerHTML = '';
-    badge.style.display = 'none';
-    currentType = 'HP';
-    document.getElementById('point-num-label').textContent = 'Point Number';
-    updatePreview();
-    return;
-  }
-
-  const parts = val.split(':');
-  currentType = parts[0];
-  const idx = parseInt(parts[1]);
-  const item = DATA[currentType][spec][idx];
-
-  document.getElementById('point-num-label').textContent = currentType === 'HP' ? 'Hold Point Number' : 'Witness Point Number';
-
-  badgeInner.textContent = currentType === 'HP' ? 'Hold Point' : 'Witness Point';
-  badgeInner.style.background = currentType === 'HP' ? 'var(--navy)' : 'var(--sky)';
-  badgeInner.style.color = 'white';
-  badge.style.display = 'block';
-
+  if (idx === '') { box.classList.remove('visible'); box.innerHTML = ''; updatePreview(); return; }
+  const item = DATA[currentType][spec][parseInt(idx)];
   let html = '';
   html += `<div class="info-label">Clause</div><div class="info-value">${item.clause} — ${item.process}</div>`;
   if (currentType === 'HP') {
@@ -529,10 +373,9 @@ function onClauseSelect() {
 
 function getSelected() {
   const spec = document.getElementById('spec-select').value;
-  const val = document.getElementById('clause-select').value;
-  if (val === '') return null;
-  const parts = val.split(':');
-  return DATA[parts[0]][spec][parseInt(parts[1])];
+  const idx = document.getElementById('clause-select').value;
+  if (idx === '') return null;
+  return DATA[currentType][spec][parseInt(idx)];
 }
 
 function sanitize(s) {
@@ -544,8 +387,7 @@ function updatePreview() {
   const item = getSelected();
   const spec = document.getElementById('spec-select').value;
   const lot = document.getElementById('lot-number').value.trim();
-  const specEl = document.getElementById('spec-select');
-  const specLabel = specEl.options[specEl.selectedIndex].text;
+  const specLabel = spec === 'R11' ? 'R11' : spec;
 
   if (!num || !item) {
     document.getElementById('zip-preview').textContent = '—';
@@ -602,7 +444,7 @@ function getCheckedDocs() {
 function buildDocx(item, spec, num, lot, chFrom, chTo, notes, checkedDocs) {
   const prefix = currentType === 'HP' ? 'Hold Point' : 'Witness Point';
   const prefixShort = currentType === 'HP' ? 'HP' : 'WP';
-  const selectEl = document.getElementById('spec-select'); const specLabel = selectEl.options[selectEl.selectedIndex].text;
+  const specLabel = spec === 'R11' ? 'R11 Stormwater Drainage' : spec;
   const today = new Date().toLocaleDateString('en-AU', {day:'2-digit', month:'2-digit', year:'numeric'});
 
   const NAVY    = '2D3691';
@@ -911,7 +753,7 @@ async function generate() {
   if (!item) { alert('Please select a clause.'); return; }
 
   const spec = document.getElementById('spec-select').value;
-  const specLabel = document.getElementById('spec-select').options[document.getElementById('spec-select').selectedIndex].text;
+  const specLabel = spec === 'R11' ? 'R11' : spec;
   const lot = document.getElementById('lot-number').value.trim();
   const chFrom = document.getElementById('ch-from').value.trim();
   const chTo = document.getElementById('ch-to').value.trim();
