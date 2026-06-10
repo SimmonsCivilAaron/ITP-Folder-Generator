@@ -166,20 +166,13 @@
           <option value="R50">R50 — Stabilisation</option>
           <option value="R53">R53 — Concrete Works</option>
           <option value="R54">R54 — General Concrete Paving</option>
-          <option value="R55">R55 — Gabions &amp; Mattresses</option>
           <option value="R63">R63 — Geotextiles</option>
           <option value="R71">R71 — Unbound Pavement</option>
           <option value="R73">R73 — Plant Mixed HBP</option>
           <option value="R82">R82 — Lean-mix Subbase</option>
           <option value="R101">R101 — Cold Milling</option>
-          <option value="R106">R106 — Sprayed Bituminous Surfacing</option>
           <option value="R116">R116 — Dense Graded Asphalt</option>
-          <option value="R142">R142 — Retroreflective RPMs</option>
-          <option value="R143">R143 — Signposting</option>
-          <option value="R145">R145 — Pavement Marking</option>
-          <option value="R178">R178 — Vegetation</option>
           <option value="B80">B80 — Stormwater Structure Concrete</option>
-          <option value="R201">R201 — Fencing</option>
         </select>
       </div>
       <div class="field">
@@ -314,7 +307,6 @@ const DATA = {
       { clause: "5.2.1", short: "Patterned Paving Details", process: "Placing of patterned concrete paving.", submission: "Details of pattern, colour, class of finish, and personnel experience, submitted at least 5 working days prior; sample panel may be required.", release: "Principal considers submitted documents and sample panel (if required) prior to authorising release." },
       { clause: "6.1", short: "Tactile Indicator Submission", process: "Construction of paving with tactile indicators.", submission: "Details of proposed tactile indicator tiles, associated materials (including adhesive) and installation method.", release: "Principal considers information provided prior to authorising release." }
     ],
-    R55: [],
     R63: [
       { clause: "2.5", short: "Geotextile Supply Approval", process: "Supply of geotextile.", submission: "Certificate of Compliance from the Supplier, and nomination of where each strength and filtration class will be used.", release: "The Principal will consider the submitted documents and may inspect the geotextile or direct further action, such as site sampling and testing in accordance with Clause 2.4, prior to authorising release." },
       { clause: "4.1", short: "Geotextile Placement Approval", process: "Placement of geotextile.", submission: "Site sampling test results referred to in Clause 2.4, at least 14 days prior to placement of geotextile.", release: "The Principal will consider the submitted test documents verifying the conformity of the geotextile with the specification and may inspect the geotextile. The Principal may require additional testing prior to authorising release." }
@@ -360,7 +352,6 @@ const DATA = {
       { clause: "4.6.6", short: "Broken Cutting Teeth", process: "Further milling of pavement after change in cut pattern due to broken or worn cutting teeth.", submission: "Notify the Principal immediately of the incident and submit details of the cause and proposed course of action.", release: "The Principal will assess the submission prior to authorising the release of the Hold Point." },
       { clause: "4.8", short: "Unsuitable Material", process: "Backfilling with replacement material.", submission: "Written notice to the Principal of the time that removal of unsuitable material will be completed and available for inspection.", release: "The Principal will inspect and consider the depth of excavation of unsuitable material prior to authorising the release of the Hold Point." }
     ],
-    R106: [],
     R116: [
       { clause: "2.3.5", short: "Mix Design Submission", process: "Placing of the nominated mix(es).", submission: "Documents as detailed in Clause 2.3.3 at least 7 working days before the nominated mix(es) is (are) proposed to be placed.", release: "The Principal will consider the submitted documents prior to authorising the release of the Hold Point. This Hold Point release is valid for a maximum period of 24 months." },
       { clause: "3.5.1", short: "Temperature Compliance Submission", process: "Commencement of paving using the nominated mix(es), including trial section (refer Clause 3.8).", submission: "If not previously submitted, details of the following: (a) minimum temperature at which asphalt will be delivered to the paver; (b) minimum temperature at which initial compaction of the asphalt can still commence; (c) method of temperature measurement.", release: "The Principal will consider the submitted documents prior to authorising the release of the Hold Point." },
@@ -383,10 +374,6 @@ const DATA = {
       { clause: "3.8", short: "Mix Placement Trial", process: "Placing of the nominated mix (including placement trial).", submission: "Nominate in writing: (a) the minimum temperature at which asphalt is to be delivered to the paver; (b) the minimum temperature at which initial compaction of the asphalt is to commence; and (c) the method of temperature measurement.", release: "The Principal will consider the submitted documents prior to authorising the release of the Hold Point." },
       { clause: "3.11", short: "Nominated Mix Placement", process: "Placing of the nominated mix.", submission: "Verification checklist and all relevant test results from the placement trial demonstrating conformity to the Specification at least 3 working days prior to further placing of your nominated mix on the work.", release: "The Principal will consider the submitted documents prior to authorising the release of the Hold Point." }
     ],
-    R142: [],
-    R143: [],
-    R145: [],
-    R178: [],
     B80: [
       { clause: "3.9.1", short: "Concrete Mix Submission", process: "Use of each nominated mix.", submission: "At least 4 weeks prior to the proposed date for use of the concrete mix, submit to the Principal the following: (a) (i) all details in Clause 3.9.3; or (ii) mix ID and concrete mix design of a nominated mix from the Register of TfNSW Concrete Mixes; and (b) a statement stating that the mix conforms to this Specification and is suitable for its intended use.", release: "The Principal will consider the submitted documents, and may carry out surveillance and audit, prior to authorising the release of the Hold Point." },
       { clause: "5.2.3", short: "Formwork Design Certification", process: "For category B formwork: placing of reinforcement. For category C formwork: erection of formwork.", submission: "For category B formwork: at least five working days before commencement of placing of reinforcement. For category C formwork: at least ten working days before commencement of erection of formwork. Submit to the Principal your formwork documentation and Engineer's design certification in accordance with Clause 5.2.", release: "The Principal will consider the submitted documents prior to authorising the release of the Hold Point. Where the Principal has concerns about the adequacy of the formwork documentation or certification, the Principal may order an independent verification of the formwork design at your expense before releasing the Hold Point." },
@@ -395,7 +382,6 @@ const DATA = {
       { clause: "7.5.2", short: "Formwork Conformity Certificate", process: "Each placement of concrete in the Works.", submission: "At least two working days prior to each concrete placement, submit to the Principal a pour specific method statement detailing: (a) delivery rate; (b) placement method and rate; (c) equipment on standby. At least 4 working hours prior to commencement of placing concrete (unless otherwise permitted by the Principal), submit to the Principal a Certificate of Conformity, endorsed by the Concrete Supervisor, in respect of formwork, reinforcement, embedments and screeding guide rails or height pins. This certificate must be accompanied by verification checklists and other details showing conformity to this Specification.", release: "The Principal will consider the submitted documents and may carry out further surveillance and audit, prior to authorising the release of the Hold Point." },
       { clause: "9.9", short: "Early Deck Trafficking", process: "Early trafficking of concrete bridge deck.", submission: "At least 2 working days prior to commencement of early trafficking, submit the 'strength versus age' relationship of concrete, with supporting test results, and evidence of completion of curing.", release: "The Principal will consider the submitted documents, prior to authorising the release of the Hold Point." }
     ],
-    R201: []
   },
   WP: {
     R11: [
@@ -420,7 +406,6 @@ const DATA = {
       { clause: "3.6", short: "Mortar/Grout Placement", process: "Placing of mortar, grout and sprayed concrete.", submission: "At least 2 working days prior: notice of expected commencement date and time of placement of mortar, grout or sprayed concrete." }
     ],
     R54: [],
-    R55: [],
     R63: [
       { clause: "2.4.2", short: "On-Site Geotextile Sampling", process: "Sampling of geotextile on site.", submission: "Location, date and time of sampling and person sampling." }
     ],
@@ -437,19 +422,13 @@ const DATA = {
     R101: [
       { clause: "4.6.2", short: "Milling Over Concrete", process: "Milling of asphalt, including trials, over each Concrete Structure or where the planned base of cut is within 40 mm of a Concrete Structure and/or waterproof membrane.", submission: "Notify the Principal not less than 24 hours prior to milling of the time and date of commencement and when the proposed depths of cut will be marked on the surface." }
     ],
-    R106: [],
     R116: [],
     R117: [],
     R119: [],
-    R142: [],
-    R143: [],
-    R145: [],
-    R178: [],
     B80: [
       { clause: "5.3", short: "Concrete Placement Testing", process: "Placement of concrete for the test member.", submission: "At least two working days' notice in writing of the proposed placement of concrete for the test member. Thereafter, give the Principal the opportunity to inspect the constructed test member." },
       { clause: "6.6.2", short: "Reinforcement Cage Assembly", process: "Assembly, lifting and transport of cages.", submission: "At least two working days' notice of intention to transport cages to the Works. Prior to the proposed transport date, submit to the Principal a Certificate of Conformity in respect of load bearing weld sizes and locations, and conformity of finished welds, together with drawings and checklists." }
     ],
-    R201: []
   }
 };
 
