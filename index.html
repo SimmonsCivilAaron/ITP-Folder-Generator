@@ -173,7 +173,7 @@
 </head>
 <body>
 
-<div id="wip-overlay">
+<div id="wip-overlay" onclick="dismissOverlay()">
   <div class="wip-box">
     <h1>WORK IN PROGRESS</h1>
     <p>Please come back later.</p>
@@ -300,7 +300,10 @@
 </div>
 
 <script>
-const DATA = {
+  function dismissOverlay() {
+    document.getElementById('wip-overlay').remove();
+  }
+  const DATA = {
   HP: {
     R11: [
       { clause: "2.4.1", short: "Precast Member Supply", process: "Supply of precast concrete members subject to traffic and/or earth pressure loading, and water retaining structures with capacity greater than 25,000 litres.", submission: "At least 7 days prior to delivery: certified product drawings (full dimensions, reinforcement, cover, lifting points, certified by structural engineer); details of manufacture, testing and installation methods.", release: "Principal considers documents and may audit Quality Records before releasing." },
